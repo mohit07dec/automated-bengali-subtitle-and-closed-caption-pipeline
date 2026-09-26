@@ -266,6 +266,3 @@ python3 impl/test_pipeline_regression.py
 - **Complex Overlapping Speech:** In scenes where three or more actors speak simultaneously over loud musical score, unsupervised 2-means clustering will partition speakers by dominant energy, which may group peripheral voices into the nearest dominant speaker cluster.
 
 ---
-
-## 8. License
-Developed for the **Hoichoi AI Builders Hackathon 2026**.
