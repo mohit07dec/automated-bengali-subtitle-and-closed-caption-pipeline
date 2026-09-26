@@ -32,8 +32,8 @@ impl/demo-ui/
 
 # Frontend Build & Dependencies
 node_modules/
-demo-app/node_modules/
-demo-app/dist/
+app/node_modules/
+app/dist/
 dist/
 .eslintcache
 

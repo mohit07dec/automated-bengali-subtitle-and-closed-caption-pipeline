@@ -135,7 +135,7 @@ Without requiring human-annotated ground-truth transcripts, the system validates
 │   ├── caption.py                # Broadcast segmentation, CPS limits & translation
 │   ├── qc.py                     # 6-factor reference-free automated QC engine
 │   └── test_pipeline_regression.py # 21-point automated regression test suite
-├── demo-app/                     # Modern React 19 + TypeScript + Vite frontend
+├── app/                          # Modern React 19 + TypeScript + Vite frontend
 │   ├── src/
 │   │   ├── App.tsx               # Interactive player, transcript sync, QC review queue
 │   │   └── components/ui/        # Modular UI components
@@ -162,8 +162,8 @@ Without requiring human-annotated ground-truth transcripts, the system validates
 ### 1. Backend Setup
 ```bash
 # Clone the repository
-git clone https://github.com/mohit07dec/hoichoi-bengali-caption-pipeline.git
-cd hoichoi-bengali-caption-pipeline
+git clone https://github.com/mohit07dec/automated-bengali-subtitle-and-closed-caption-pipeline.git
+cd automated-bengali-subtitle-and-closed-caption-pipeline
 
 # Install Python dependencies
 pip install -r requirements.txt
@@ -176,7 +176,7 @@ python3 impl/api_server.py
 ### 2. Frontend Setup
 ```bash
 # Open a new terminal in the repository root
-cd demo-app
+cd app
 
 # Install Node dependencies
 npm install
