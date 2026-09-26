@@ -1,6 +1,7 @@
 # Automated Bengali Subtitle & Closed-Caption Pipeline with Speaker Diarization
 
-> An end-to-end, AI-native broadcast subtitle and closed-captioning pipeline engineered specifically for Bengali OTT content. Ingests raw video/audio and produces production-grade Bengali captions, multi-speaker attribution, synchronized English and Hindi translations, non-speech event tags, and reference-free automated QC validation.
+> **Live Working Demo:** [https://revealed-clara-compromise-technological.trycloudflare.com](https://revealed-clara-compromise-technological.trycloudflare.com)  
+> *Production-grade broadcast subtitle pipeline with speaker diarization, multi-language translation, and reference-free automated QC.*
 
 ---
 
