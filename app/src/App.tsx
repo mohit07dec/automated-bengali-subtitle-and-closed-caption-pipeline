@@ -185,7 +185,7 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen min-w-[1240px] bg-slate-50 text-slate-900 flex flex-col font-sans overflow-x-auto">
+    <div className="h-screen w-full min-w-[1240px] bg-slate-50 text-slate-900 flex flex-col font-sans overflow-hidden">
       {/* ── Top Header ── */}
       <header className="flex-none h-16 border-b border-slate-200 bg-white flex items-center justify-between px-6 shadow-sm">
         <div className="flex items-center gap-3">
@@ -238,18 +238,18 @@ export default function App() {
 
       {/* ── Processing Stage Banner ── */}
       {processing && (
-        <div className="bg-red-50 border-b border-red-200 px-6 py-2 flex items-center gap-2 text-xs font-medium text-red-800 animate-pulse">
+        <div className="flex-none bg-red-50 border-b border-red-200 px-6 py-2 flex items-center gap-2 text-xs font-medium text-red-800 animate-pulse">
           <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
           {processingStage}
         </div>
       )}
 
       {/* ── Main Workspace: 2-Column Split ── */}
-      <div className="flex-grow flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden min-h-0">
         {/* ══ LEFT: Video Player + QC Report (62%) ══ */}
-        <div className="flex flex-col border-r border-slate-200 bg-white" style={{ width: '62%' }}>
-          {/* Video Container */}
-          <div className="relative bg-black flex items-center justify-center" style={{ height: '360px' }}>
+        <div className="flex flex-col border-r border-slate-200 bg-white h-full overflow-hidden" style={{ width: '62%' }}>
+          {/* Video Container (Fixed, never scrolls) */}
+          <div className="flex-none relative bg-black flex items-center justify-center" style={{ height: '360px' }}>
             {videoUrl ? (
               <video
                 ref={videoRef}
@@ -280,7 +280,7 @@ export default function App() {
           </div>
 
           {/* Controls Bar */}
-          <div className="h-12 border-t border-b border-slate-200 bg-slate-50 px-4 flex items-center gap-3">
+          <div className="flex-none h-12 border-t border-b border-slate-200 bg-slate-50 px-4 flex items-center gap-3">
             <button
               onClick={togglePlay}
               disabled={!videoUrl}
@@ -310,8 +310,8 @@ export default function App() {
             )}
           </div>
 
-          {/* ── QC Report Panel ── */}
-          <div className="flex-grow overflow-y-auto p-5 bg-white">
+          {/* ── QC Report Panel (Independently scrollable) ── */}
+          <div className="flex-1 overflow-y-auto p-5 bg-white min-h-0">
             <div className="flex items-center justify-between pb-3 border-b border-slate-200">
               <div className="flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-slate-700" />
@@ -504,8 +504,8 @@ export default function App() {
         </div>
 
         {/* ══ RIGHT: Live Transcript Timeline (38%) ══ */}
-        <div className="flex flex-col bg-slate-100" style={{ width: '38%' }}>
-          <div className="h-12 border-b border-slate-200 bg-white px-5 flex items-center justify-between shadow-xs">
+        <div className="flex flex-col bg-slate-100 h-full overflow-hidden" style={{ width: '38%' }}>
+          <div className="flex-none h-12 border-b border-slate-200 bg-white px-5 flex items-center justify-between shadow-xs">
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-700">
               Live Transcript Timeline
             </h2>
@@ -516,7 +516,7 @@ export default function App() {
             )}
           </div>
 
-          <div ref={transcriptRef} className="flex-grow overflow-y-auto p-4 space-y-2">
+          <div ref={transcriptRef} className="flex-1 overflow-y-auto p-4 space-y-2 min-h-0">
             {captions.map((cue, idx) => {
               const isActive = currentTime >= cue.startTime && currentTime <= cue.endTime;
               const isMusic = cue.speaker === 'MUSIC' || cue.text.includes('[MUSIC]');
