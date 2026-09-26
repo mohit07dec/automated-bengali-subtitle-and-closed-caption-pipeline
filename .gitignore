@@ -1,0 +1,61 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Large Media & Video Files (Broadcast hackathon test assets)
+hackathon_contents/
+*.mp4
+*.m4a
+*.wav
+*.mp3
+*.mkv
+*.avi
+*.flac
+
+# Pipeline Runtime & Temporary Outputs
+temp_pipeline_output/
+impl/output/
+impl/temp_output/
+impl/test_*_out/
+impl/test_out/
+impl/pipeline_output/
+impl/demo-ui/
+*.tmp
+
+# Frontend Build & Dependencies
+node_modules/
+demo-app/node_modules/
+demo-app/dist/
+dist/
+.eslintcache
+
+# Logs & Environment
+*.log
+npm-debug.log*
+yarn-debug.log*
+.env
+.env*.local
+
+# Assistant & Agent Internal Cache Files
+.gemini/
+.claude/
+.orchestra-skills.json
+to_human/
+literature/
+paper/
+experiments/
+findings.md
+research-log.md
+research-state.yaml
+
+# OS Artifacts
+.DS_Store
+Thumbs.db
