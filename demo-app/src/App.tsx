@@ -129,7 +129,7 @@ export default function App() {
       }
 
       setProcessingStage('Classifying audio, running Bengali ASR & Diarization...');
-      const res = await fetch('http://localhost:8081/api/process', {
+      const res = await fetch('/api/process', {
         method: 'POST',
         body: formData,
       });
