@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3000,
-    allowedHosts: true,
+    allowedHosts: ['.trycloudflare.com', 'logistics-tubes-libraries-dir.trycloudflare.com', 'localhost'],
     proxy: {
       '/api': {
         target: 'http://localhost:8081',
