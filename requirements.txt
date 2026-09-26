@@ -3,12 +3,14 @@ numpy>=1.20.0
 scipy>=1.7.0
 webvtt-py>=0.4.5
 
-# Optional dependencies for ML/research experimentation
-torch>=1.9.0
-torchaudio>=0.9.0
-transformers>=4.12.0
-librosa>=0.8.0
-soundfile>=0.10.0
+requests>=2.25.0
+
+# Optional research dependencies (not required for runtime pipeline):
+# torch>=1.9.0
+# torchaudio>=0.9.0
+# transformers>=4.12.0
+# librosa>=0.8.0
+# soundfile>=0.10.0
 
 # System requirements (install via apt / package manager):
 # - ffmpeg >= 4.2

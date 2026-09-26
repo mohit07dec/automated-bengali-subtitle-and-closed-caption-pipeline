@@ -20,6 +20,7 @@ import sys
 import json
 import os
 import re
+import mimetypes
 import tempfile
 import subprocess
 import logging
@@ -29,6 +30,7 @@ from typing import Dict, Any
 
 # Ensure current directory is in sys.path for direct invocation from root
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+STATIC_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "app", "dist")
 
 from pipeline import BengaliSubtitlePipeline, PipelineConfig
 
@@ -124,6 +126,33 @@ class APIHandler(BaseHTTPRequestHandler):
 
             self.send_json_response(404, {"error": "File not found"})
             return
+
+        # Static SPA serving for frontend
+        if not parsed.path.startswith("/api/"):
+            rel_path = parsed.path.lstrip("/")
+            target = os.path.join(STATIC_DIR, rel_path) if rel_path else os.path.join(STATIC_DIR, "index.html")
+            if os.path.exists(target) and os.path.isfile(target):
+                file_to_serve = target
+            else:
+                file_to_serve = os.path.join(STATIC_DIR, "index.html")
+
+            if os.path.exists(file_to_serve) and os.path.isfile(file_to_serve):
+                mime_type, _ = mimetypes.guess_type(file_to_serve)
+                if not mime_type:
+                    mime_type = "application/octet-stream"
+                try:
+                    with open(file_to_serve, "rb") as f:
+                        content = f.read()
+                    self.send_response(200)
+                    self.send_header("Content-Type", mime_type)
+                    self.send_header("Content-Length", str(len(content)))
+                    self.send_header("Connection", "close")
+                    self.end_headers()
+                    self.wfile.write(content)
+                    self.wfile.flush()
+                except Exception as e:
+                    logger.error(f"Error serving static file {file_to_serve}: {e}")
+                return
 
         self.send_json_response(404, {"error": "Endpoint not found"})
 
@@ -254,10 +283,12 @@ class APIHandler(BaseHTTPRequestHandler):
                 except Exception:
                     pass
 
-def run_server(port: int = 8081):
+def run_server(port: int = None):
+    if port is None:
+        port = int(os.environ.get("PORT", 8081))
     server_address = ('', port)
     httpd = ThreadingHTTPServer(server_address, APIHandler)
-    logger.info(f"API Server (Multi-Threaded) listening on http://localhost:{port}")
+    logger.info(f"API Server (Multi-Threaded) listening on http://0.0.0.0:{port}")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
@@ -266,4 +297,4 @@ def run_server(port: int = 8081):
     logger.info("API Server stopped.")
 
 if __name__ == '__main__':
-    run_server(8081)
+    run_server()
