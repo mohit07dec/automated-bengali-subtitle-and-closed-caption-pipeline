@@ -3,8 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>demo-app</title>
+    <meta name="viewport" content="width=1280, user-scalable=yes" />
+    <title>Hoichoi — Automated Bengali Subtitle &amp; Closed-Caption Pipeline</title>
+    <script>
+      // Automatically ensure mobile devices render in full desktop studio mode
+      if (screen.width < 1280) {
+        var vp = document.querySelector("meta[name=viewport]");
+        if (vp) {
+          vp.setAttribute('content', 'width=1280, initial-scale=' + (screen.width / 1280) + ', maximum-scale=2.0, user-scalable=yes');
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

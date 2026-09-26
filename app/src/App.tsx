@@ -185,7 +185,7 @@ export default function App() {
   );
 
   return (
-    <div className="h-screen bg-slate-50 text-slate-900 flex flex-col font-sans overflow-hidden">
+    <div className="min-h-screen min-w-[1240px] bg-slate-50 text-slate-900 flex flex-col font-sans overflow-x-auto">
       {/* ── Top Header ── */}
       <header className="flex-none h-16 border-b border-slate-200 bg-white flex items-center justify-between px-6 shadow-sm">
         <div className="flex items-center gap-3">
